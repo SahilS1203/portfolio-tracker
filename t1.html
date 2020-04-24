@@ -1,0 +1,67 @@
+<html>
+
+<script>
+var divData = [{"Symbol":"SUNPHARMA","Type":"dividend","Date":"2017-08-31T13:00:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":15,"Amount":3.5,"NetDivident":52.5,"TotalDivident":52.5},
+{"Symbol":"CUMMINSIND","Type":"dividend","Date":"2018-01-31T13:00:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":5,"Amount":5,"NetDivident":25,"TotalDivident":217.5},
+{"Symbol":"IRB","Type":"dividend","Date":"2018-01-31T13:00:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":20,"Amount":2.5,"NetDivident":50,"TotalDivident":1155},
+{"Symbol":"CUMMINSIND","Type":"dividend","Date":"2018-02-14T22:15:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":5,"Amount":5,"NetDivident":25,"TotalDivident":242.5},
+{"Symbol":"TECHM","Type":"dividend","Date":"2018-06-30T13:00:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":10,"Amount":14,"NetDivident":140,"TotalDivident":192.5},
+{"Symbol":"ICICIBANK","Type":"dividend","Date":"2018-06-30T13:00:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":25,"Amount":1.5,"NetDivident":37.5,"TotalDivident":330},
+{"Symbol":"KTKBANK","Type":"dividend","Date":"2018-06-30T13:00:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":100,"Amount":3,"NetDivident":300,"TotalDivident":705},
+{"Symbol":"INDHOTEL","Type":"dividend","Date":"2018-06-30T13:00:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":100,"Amount":0.4,"NetDivident":40,"TotalDivident":1105},
+{"Symbol":"CUMMINSIND","Type":"dividend","Date":"2018-07-31T13:00:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":5,"Amount":10,"NetDivident":50,"TotalDivident":292.5},
+{"Symbol":"ICICIBANK","Type":"dividend","Date":"2018-07-31T13:00:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":25,"Amount":1.5,"NetDivident":37.5,"TotalDivident":367.5},
+{"Symbol":"KTKBANK","Type":"dividend","Date":"2018-07-31T13:00:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":100,"Amount":3,"NetDivident":300,"TotalDivident":1005},
+{"Symbol":"PIDILITIND","Type":"dividend","Date":"2018-07-31T13:00:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":5,"Amount":6,"NetDivident":30,"TotalDivident":1035},
+{"Symbol":"IRB","Type":"dividend","Date":"2018-07-31T13:00:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":20,"Amount":2.5,"NetDivident":50,"TotalDivident":1205},
+{"Symbol":"ICICIBANK","Type":"dividend","Date":"2018-08-31T13:00:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":25,"Amount":1.5,"NetDivident":37.5,"TotalDivident":405},
+{"Symbol":"PIDILITIND","Type":"dividend","Date":"2018-08-31T13:00:00.000Z","SharesBeforeSplit":0,"SharesAfterSplitOrSharesAtDivReceipt":5,"Amount":6,"NetDivident":30,"TotalDivident":1065}];
+
+var Year = [];
+for(var i=0; i < divData.length; i++){
+  Year.push(divData[i]["Date"].substring(0,4));
+}
+let unique = [...new Set(Year)];
+console.log(unique);
+
+for (var j=0; j< unique.length; j++){
+var filteredData = divData.filter(element => element.Date.includes(unique[j]));
+console.log(filteredData);
+}
+</script>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <div class="dropdown">
+    <button id="dropButton" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Year
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" id="dropMenu">
+      <script type='text/javascript'>
+      var thisUL = document.getElementById('dropMenu');
+      for(var i = 0; i < unique.length; i++) {
+          var link = document.createElement('a');
+          link.setAttribute('href', unique[i]);
+          link.appendChild(document.createTextNode(unique[i]));
+          var thisLI = document.createElement('li');
+          thisLI.appendChild(link);
+          thisUL.appendChild(thisLI);
+      }
+      $("#dropMenu a").click(function(e){
+      e.preventDefault(); // cancels the link behaviour
+      var selText = $(this).text();
+      $("#dropButton").text(selText);
+      });
+      var filteredData = divData.filter(element => element.Date.includes(selText));
+      console.log(selText);
+      </script>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
